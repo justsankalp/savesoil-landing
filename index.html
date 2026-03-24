@@ -3,220 +3,406 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vidhai & The Save Soil Movement</title>
+    <title>Vidhai | Regenerative Intelligence</title>
     <style>
         :root {
-            --primary-green: #2e7d32;
-            --light-green: #e8f5e9;
-            --text-dark: #333333;
-            --text-light: #666666;
+            --bg-color: #050d08;
+            --card-bg: #0b1911;
+            --card-border: #142a1c;
+            --accent-green: #488a5c;
+            --accent-hover: #3b734c;
+            --text-main: #e0e8e2;
+            --text-muted: #6b8e76;
+            --mono-font: 'Courier New', Courier, monospace;
+            --sans-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body, html {
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f9fafb;
-            color: var(--text-dark);
+            background-color: var(--bg-color);
+            background: radial-gradient(circle at 20% 30%, #0a1c12 0%, var(--bg-color) 70%);
+            color: var(--text-main);
+            font-family: var(--sans-font);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column; /* Ensure ticker stays at top */
+            align-items: center;
+        }
+
+        /* --- TOP TICKER BAR --- */
+        .top-ticker {
+            width: 100%;
+            background-color: #020604;
+            border-bottom: 1px solid var(--card-border);
+            padding: 8px 0;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .ticker-content {
+            display: inline-block;
+            white-space: nowrap;
+            color: var(--accent-green);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-weight: 500;
+            animation: ticker 25s linear infinite;
+        }
+
+        /* Repeating the content ensures a smooth loop */
+        .ticker-text {
+            padding-right: 50px;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* --- LAYOUT --- */
+        .layout {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 1400px;
+            padding: 40px;
+            gap: 60px;
+            box-sizing: border-box;
+            flex-grow: 1;
+            align-items: center;
+        }
+
+        /* --- LEFT PANEL --- */
+        .left-panel {
+            flex: 1;
+            min-width: 350px;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            justify-content: space-between;
         }
 
-        header {
-            background-color: var(--primary-green);
-            color: white;
-            padding: 2rem;
-            text-align: center;
+        .top-logo {
+            width: auto;
+            max-width: 250px; /* Adjust if using your local logo */
+            height: auto;
+            margin-bottom: 60px;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
+        .brand-section {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .overline {
+            font-family: var(--sans-font);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .overline::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background-color: var(--text-muted);
+        }
+
+        .huge-tamil {
+            font-size: 8rem;
+            font-weight: bold;
+            line-height: 1;
+            margin: 0 0 10px 0;
+            color: #ffffff;
+        }
+
+        .underline-text {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 60px;
+        }
+
+        .crisis-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 450px;
+        }
+
+        .crisis-header {
+            font-family: var(--sans-font);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .crisis-header::before {
+            content: '';
+            width: 20px;
+            height: 1px;
+            background-color: var(--text-muted);
+        }
+
+        .crisis-body {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            transition: opacity 0.5s ease;
+            min-height: 100px;
+        }
+
+        .crisis-footer {
+            font-family: var(--mono-font);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 15px;
+        }
+
+        /* --- RIGHT PANEL --- */
+        .right-panel {
+            flex: 1;
+            min-width: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .main-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 50px;
+            width: 100%;
+            max-width: 550px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .main-card h2 {
+            font-family: var(--mono-font);
+            font-size: 2rem;
+            margin: 0 0 10px 0;
+            color: #ffffff;
+        }
+
+        .scripts-line {
+            color: var(--accent-green);
+            font-size: 0.85rem;
+            margin-bottom: 30px;
             letter-spacing: 1px;
         }
 
-        header p {
-            margin: 10px 0 0 0;
+        .main-card h3 {
             font-size: 1.2rem;
-            opacity: 0.9;
+            margin: 0 0 15px 0;
+            color: #ffffff;
         }
 
-        .main-container {
-            display: flex;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            flex-grow: 1;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .left-panel {
-            flex: 1;
-            min-width: 300px;
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border-top: 5px solid var(--primary-green);
-            min-height: 250px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .fact-box {
-            font-size: 1.5rem;
+        .main-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
             line-height: 1.6;
-            color: var(--primary-green);
-            font-weight: 500;
-            transition: opacity 0.5s ease-in-out;
+            margin-bottom: 30px;
         }
 
-        .right-panel {
-            flex: 1;
-            min-width: 300px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        /* Action Buttons */
+        .primary-btn {
+            display: block;
+            width: 100%;
+            background-color: var(--accent-green);
+            color: #ffffff;
             text-align: center;
-        }
-
-        .qr-container {
-            background: white;
-            padding: 20px;
+            padding: 16px;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            transition: background 0.3s;
+            box-sizing: border-box;
         }
 
-        .qr-container img {
-            width: 250px;
-            height: 250px;
-            background-color: #eee; /* Placeholder color */
+        .primary-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .secondary-btn {
+            display: block;
+            width: 100%;
+            background-color: transparent;
+            color: var(--text-main);
+            text-align: center;
+            padding: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            border: 1px solid var(--card-border);
+            transition: border-color 0.3s, background-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .secondary-btn:hover {
+            border-color: var(--text-muted);
+            background-color: rgba(255,255,255,0.02);
+        }
+
+        /* QR Section */
+        .qr-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 30px 0;
+            padding-top: 30px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .qr-section img {
+            width: 100px;
+            height: 100px;
             border-radius: 8px;
-            object-fit: cover;
+            border: 2px solid var(--accent-green);
+            padding: 4px;
+            background: white;
         }
 
         .qr-text {
-            color: var(--text-light);
-            font-size: 1.1rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        
+        .qr-text strong {
+            color: var(--text-main);
+            font-family: var(--mono-font);
         }
 
-        footer {
-            background-color: var(--text-dark);
-            color: white;
-            padding: 40px 20px;
+        .footer-note {
             text-align: center;
-            margin-top: auto;
+            font-family: var(--mono-font);
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            margin-top: 30px;
         }
 
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .contact-links a {
-            color: white;
-            text-decoration: none;
-            background-color: var(--primary-green);
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-
-        .contact-links a:hover {
-            background-color: #1b5e20;
-        }
-
-        @media (max-width: 768px) {
-            .main-container {
+        @media (max-width: 900px) {
+            .layout {
                 flex-direction: column;
-                margin: 20px auto;
+                padding: 20px;
+                gap: 40px;
             }
-            header h1 {
-                font-size: 2rem;
+            .huge-tamil {
+                font-size: 6rem;
             }
-            .fact-box {
-                font-size: 1.2rem;
+            .right-panel {
+                justify-content: center;
+            }
+            .main-card {
+                padding: 30px;
             }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Vidhai & Save Soil</h1>
-        <p>Intelligence, Rooted in Soil.</p>
-    </header>
+    <div class="top-ticker">
+        <div class="ticker-content">
+            <span class="ticker-text">வாழ்க பாரதம்! வளர்க பாரதம்!</span>
+            <span class="ticker-text">வாழ்க பாரதம்! வளர்க பாரதம்!</span>
+            <span class="ticker-text">வாழ்க பாரதம்! வளர்க பாரதம்!</span>
+            <span class="ticker-text">வாழ்க பாரதம்! வளர்க பாரதம்!</span>
+            <span class="ticker-text">வாழ்க பாரதம்! வளர்க பாரதம்!</span>
+            <span class="ticker-text">வாழ்க பாரதம்! வளர்க பாரதம்!</span>
+            <span class="ticker-text">வாழ்க பாரதம்! வளர்க பாரதம்!</span>
+            <span class="ticker-text">வாழ்க பாரதம்! வளர்க பாரதம்!</span>
+        </div>
+    </div>
 
-    <div class="main-container">
+    <div class="layout">
+        
         <div class="left-panel">
-            <div id="fact-display" class="fact-box">
-                Loading intelligence...
+            <div>
+                <div class="top-logo" style="font-size: 40px;">🌱</div>
+                
+                <div class="brand-section">
+                    <div class="overline">SEED ACROSS THE GLOBE</div>
+                    <h1 class="huge-tamil">விதை</h1>
+                    <div class="underline-text">Tamil</div>
+                </div>
+            </div>
+
+            <div class="crisis-card">
+                <div class="crisis-header" id="dynamic-label">SOIL CRISIS</div>
+                <div id="dynamic-fact" class="crisis-body">
+                    Loading intelligence...
+                </div>
+                <div class="crisis-footer">— Vidhai AI Engine</div>
             </div>
         </div>
 
         <div class="right-panel">
-            <div class="qr-container">
-                <img src="qr.png" alt="Scan to visit savesoil.sankalp.life">
-            </div>
-            <div class="qr-text">
-                <strong>Scan to view this page</strong><br>
-                savesoil.sankalp.life
-            </div>
-        </div>
-    </div>
+            <div class="main-card">
+                <h2>Welcome to Vidhai</h2>
+                <div class="scripts-line">விதை • Seed • बीज • Graine • بذر</div>
+                
+                <h3>Regenerative farm planning for Tamil Nadu</h3>
+                <p>Describe your land. Get two science-backed paths — one to heal your soil, one to maximize your harvest.</p>
 
-    <footer>
-        <h2>Connect & Collaborate</h2>
-        <p>Vidhai is a multi-agent reasoning engine built to de-risk sustainable farming.<br>If you're interested in the technology or the Save Soil movement, let's talk.</p>
-        
-        <div class="contact-links">
-            <a href="mailto:sankalp.karthi@gmail.com>Email Sankalp</a>
-            <a href="https://forms.gle/dHsYNHsHnbB6PYeu6" target="_blank">Leave Feedback</a>
+                <a href="https://forms.gle/dHsYNHsHnbB6PYeu6" target="_blank" class="primary-btn">Leave Feedback →</a>
+                <a href="mailto:sankalp.karthi@gmail.com" class="secondary-btn">Contact Sankalp</a>
+
+                <div class="qr-section">
+                    <img src="qr.png" alt="QR Code">
+                    <div class="qr-text">
+                        <strong>Scan to view locally</strong><br>
+                        Share this platform or connect with the founder.
+                    </div>
+                </div>
+
+                <div class="footer-note">Free For Now • Built for Boffin's Den</div>
+            </div>
         </div>
-        <p style="margin-top: 30px; font-size: 0.9rem; opacity: 0.7;">Built with Google Cloud & ADK. Boffin's Den 2026.</p>
-    </footer>
+
+    </div>
 
     <script>
         const facts = [
-            "Every single second, an area the size of four football fields of healthy soil becomes degraded globally.",
-            "The Save Soil movement aims to unite 3.5 billion people to advocate for national policies that mandate a minimum of 3-6% organic content in agricultural soils.",
-            "Vidhai (Seed) is a multi-agent AI orchestrator built on Google Cloud to help smallholder farmers transition to regenerative agriculture.",
-            "Without healthy soil, 95% of the world's food supply is at risk. Soil extinction is not a distant threat; it is a present reality.",
-            "Vidhai bridges the gap between ecological necessity and farmer profitability by using Vertex AI to retrieve verified indigenous crop data.",
-            "If we act now, we can turn the tide. Regenerative agriculture and tools like Vidhai provide the blueprint for reversing soil degradation."
+            { label: "SOIL CRISIS", text: "52% of the world's agricultural soils are already degraded. Without intervention, 95% of the world's food supply is at risk." },
+            { label: "THE MISSION", text: "The Save Soil movement aims to unite 3.5 billion people to advocate for policies that mandate 3-6% organic content in soils." },
+            { label: "VIDHAI ENGINE", text: "Vidhai bridges the gap between ecological necessity and farmer profitability by using Vertex AI to retrieve verified indigenous crop data." },
+            { label: "ARCHITECTURE", text: "A multi-agent orchestrator built on Google Cloud. It parallel-processes soil health metrics and economic yield without hallucination." },
+            { label: "ACTION", text: "If we act now, we can turn the tide. Regenerative agriculture provides the blueprint for reversing soil degradation in this generation." }
         ];
 
         let currentFactIndex = 0;
-        const factDisplay = document.getElementById('fact-display');
+        const factDisplay = document.getElementById('dynamic-fact');
+        const labelDisplay = document.getElementById('dynamic-label');
 
         function updateFact() {
-            // Fade out
             factDisplay.style.opacity = 0;
             
             setTimeout(() => {
-                // Change text
-                factDisplay.innerText = facts[currentFactIndex];
-                // Fade in
+                factDisplay.innerText = facts[currentFactIndex].text;
+                labelDisplay.innerText = facts[currentFactIndex].label;
                 factDisplay.style.opacity = 1;
-                // Move to next fact
                 currentFactIndex = (currentFactIndex + 1) % facts.length;
-            }, 500); // Wait for fade out to complete (0.5s)
+            }, 500); 
         }
 
-        // Initialize first fact immediately
         updateFact();
-
-        // Rotate every 6 seconds
         setInterval(updateFact, 6000);
     </script>
 
